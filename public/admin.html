@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <section id="pending-users">
+        <h2>Pending Approvals (Pastor/IT)</h2>
+        <table id="pending-users-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- User rows will be populated by JS -->
+                <tr>
+                    <td colspan="4">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="other-actions">
+        <h2>Other Admin Actions</h2>
+        <p>Placeholder for future admin functionalities (e.g., view all users, manage content, etc.)</p>
+    </section>
+
+    <!-- Add a simple way to input JWT for API calls -->
+    <div style="margin-top: 20px;">
+        <label for="jwt-token">Admin JWT:</label>
+        <input type="text" id="jwt-token" placeholder="Paste your JWT here" size="50">
+        <small>Needed for API requests.</small>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

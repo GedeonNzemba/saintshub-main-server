@@ -1,0 +1,6 @@
+# Directories to ignore for ESLint
+
+node_modules/
+dist/
+public/
+jest.setup.js
