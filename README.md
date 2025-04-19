@@ -1,4 +1,4 @@
-# Church Dashboard Backend
+# Backend Server - SaintsHub
 
 ## Overview
 
