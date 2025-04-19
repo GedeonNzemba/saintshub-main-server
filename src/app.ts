@@ -15,14 +15,18 @@ import adminRoutes from './routes/adminRoutes.js'; // Import admin routes
 // ======================================== 
 // App Initialization
 // ======================================== 
+console.log(`[${new Date().toISOString()}] Starting Express app initialization`);
 const app: Express = express();
+console.log(`[${new Date().toISOString()}] Express app instance created`);
 
 // ======================================== 
 // Global Middleware
 // ======================================== 
 
 // Security Headers (Helmet) - Should be early
+console.log(`[${new Date().toISOString()}] Setting up Helmet security headers`);
 app.use(helmet());
+console.log(`[${new Date().toISOString()}] Helmet security headers configured`);
 
 // CORS (Cross-Origin Resource Sharing) - Configure appropriately for your frontend
 const corsOptions = {
@@ -30,10 +34,14 @@ const corsOptions = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies if needed
 };
+console.log(`[${new Date().toISOString()}] Setting up CORS with options:`, corsOptions);
 app.use(cors(corsOptions));
+console.log(`[${new Date().toISOString()}] CORS middleware configured`);
 
 // Body Parser (JSON)
+console.log(`[${new Date().toISOString()}] Setting up JSON body parser`);
 app.use(express.json({ limit: '10kb' })); // Limit request body size
+console.log(`[${new Date().toISOString()}] JSON body parser configured`);
 
 // URL-encoded data parser (optional, if using forms)
 app.use(express.urlencoded({ extended: true, limit: '10kb' })); // Parse URL-encoded bodies
@@ -51,18 +59,27 @@ app.use(express.static(path.join(__dirname, '..', 'public'))); // Go up one leve
 // ======================================== 
 
 // Root/Health Check Route
+console.log(`[${new Date().toISOString()}] Setting up root/health check route`);
 app.get('/', (_req: Request, res: Response) => {
+  console.log(`[${new Date().toISOString()}] Health check route accessed`);
   res.status(200).json({ status: 'success', message: 'Saintshub Dashboard API is running!' });
 });
+console.log(`[${new Date().toISOString()}] Root/health check route configured`);
 
 // Mount Authentication Routes
+console.log(`[${new Date().toISOString()}] Mounting authentication routes`);
 app.use('/api/v1/auth', authRoutes);
+console.log(`[${new Date().toISOString()}] Authentication routes mounted`);
 
 // Mount Dashboard Routes
+console.log(`[${new Date().toISOString()}] Mounting dashboard routes`);
 app.use('/api/v1/dashboard', dashboardRoutes);
+console.log(`[${new Date().toISOString()}] Dashboard routes mounted`);
 
 // Mount Admin Routes
+console.log(`[${new Date().toISOString()}] Mounting admin routes`);
 app.use('/api/v1/admin', adminRoutes);
+console.log(`[${new Date().toISOString()}] Admin routes mounted`);
 
 // ======================================== 
 // Undefined Route Handler
@@ -78,6 +95,8 @@ app.use((_req: Request, _res: Response, next: NextFunction) => {
 // ======================================== 
 // Must be the LAST middleware added
 app.use(globalErrorHandler);
+
+console.log(`[${new Date().toISOString()}] Express app initialization complete`);
 
 // Export the configured app
 export { app };
